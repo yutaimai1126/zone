@@ -7,11 +7,7 @@ st.set_page_config(page_title="Zone", page_icon='other_pic/icon.png')
 
 def zone_estimation():
     emotions = ['ZONE', 'LAZY', 'NOMAL']
-
     
-
-
-
     with open('./model', 'rb') as f:
         model = pickle.load(f)
 
