@@ -20,14 +20,7 @@ def zone_estimation():
     nomal_time_placeholder = st.empty()
     focus_score_placeholder = st.empty()
     stage_placeholder = st.empty()
-    
-    # ストップボタンの作成とステート管理
-    if 'stop_button_pressed' not in st.session_state:
-        st.session_state.stop_button_pressed = False
-    
     stop_button_pressed = st.button("Stop", key="stop_button")
-    if stop_button_pressed:
-        st.session_state.stop_button_pressed = True
 
     # 初期化
     if 'study_time' not in st.session_state:
@@ -43,13 +36,12 @@ def zone_estimation():
     if 'stage' not in st.session_state:
         st.session_state.stage = None
 
-    if cap.isOpened() and not st.session_state.stop_button_pressed:
+    while cap.isOpened() and not stop_button_pressed:
         ret, frame = cap.read()
         
         if not ret:
             st.warning("カメラからの映像を取得できませんでした")
-            cap.release()
-            return
+            break
 
         # 顔ランドマークの取得
         face_landmarks = get_face_landmarks(frame, draw=False, static_image_mode=False)
@@ -92,10 +84,13 @@ def zone_estimation():
         zone_time_placeholder.text(f'ZONE time: {str(round(st.session_state.zone_time, 1))}')
 
         focus_score_placeholder.text(f'Focus score: {str(round(st.session_state.focus_score, 0))}')
-    
-    if st.session_state.stop_button_pressed:
-        cap.release()
-        st.text(f'勉強お疲れ様！あなたの勉強時間は{round(st.session_state.study_time,0)}秒、集中度は{round(st.session_state.focus_score,0)}%です！')
+        
+        if cv2.waitKey(10) & 0xFF == ord('q'):
+            break
+
+    cap.release()
+
+    st.text(f'勉強お疲れ様！あなたの勉強時間は{round(st.session_state.study_time,0)}秒、集中度は{round(st.session_state.focus_score,0)}%です！')
 
 
 def main():
