@@ -1,3 +1,4 @@
+import asyncio
 import cv2
 import streamlit as st
 import pickle
@@ -6,15 +7,14 @@ from utils import get_face_landmarks
 
 st.set_page_config(page_title="Zone", page_icon='other_pic/icon.png')
 
-def zone_estimation():
+async def zone_estimation():
     emotions = ['ZONE', 'LAZY', 'NOMAL']
-    
+
     with open('./model', 'rb') as f:
         model = pickle.load(f)
 
     webrtc_ctx = webrtc_streamer(key="example", mode=WebRtcMode.SENDRECV)
 
-    
     if webrtc_ctx.video_receiver:
         frame_placeholder = st.empty()
         study_time_placeholder = st.empty()
@@ -47,7 +47,7 @@ def zone_estimation():
             st.session_state.stage = None
 
         if not st.session_state.stop_button_pressed:
-            frame = webrtc_ctx.video_receiver.recv()
+            frame = await webrtc_ctx.video_receiver.recv()
             if frame is not None:
                 # 顔ランドマークの取得
                 face_landmarks = get_face_landmarks(frame, draw=False, static_image_mode=False)
@@ -83,14 +83,13 @@ def zone_estimation():
                 lazy_time_placeholder.text(f'LAZY time: {str(round(st.session_state.lazy_time, 1))}')
                 zone_time_placeholder.text(f'ZONE time: {str(round(st.session_state.zone_time, 1))}')
                 focus_score_placeholder.text(f'Focus score: {str(round(st.session_state.focus_score, 0))}')
-    
+
         if st.session_state.stop_button_pressed:
             st.text(f'勉強お疲れ様！あなたの勉強時間は{round(st.session_state.study_time, 0)}秒、集中度は{round(st.session_state.focus_score, 0)}%です！')
 
-
-def main():
+async def main():
     st.title("集中力測定")
-    zone_estimation()
+    await zone_estimation()
 
 if __name__ == '__main__':
-    main()
+    asyncio.run(main())
