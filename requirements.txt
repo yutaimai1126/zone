@@ -1,1 +1,6 @@
-opencv-python-headless
+streamlit
+mediapipe
+numpy
+opencv-python
+scikit-learn
+pickle

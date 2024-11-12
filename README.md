@@ -2,6 +2,20 @@
 
 ![サービス概要](other_pic/UI/paper_proto.png)
 
+## 試作品
+```
+https://github.com/yutaimai1126/zone.git    # このリポジトリをクローン
+
+python -m venv .venv    # 仮想環境を作成
+
+. .venv/bin/activate         # 仮想環境をアクティベート(Linux,Macの場合)
+.\.venv\Scripts\activate    # 仮想環境をアクティベート(Windowsの場合)
+
+pip install requirements.txt    # 必要なライブラリをインストール
+
+streamlit run streamlit_app.py     # アプリを起動(ローカルサーバー)
+```
+
 ## 想定エンドユーザー
 部活と勉強を両立させたい高校２年生のタクミさん
 
