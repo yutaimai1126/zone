@@ -12,15 +12,9 @@ def zone_estimation():
     with open('./model', 'rb') as f:
         model = pickle.load(f)
 
-    if self._sock is not None:
-        self._sock.sendto(data, addr)
-    else:
-        logging.error("Socket is None, cannot send data")
-
     webrtc_ctx = webrtc_streamer(key="example", mode=WebRtcMode.SENDRECV)
-
     
-    
+    st.text('画像処理')
     if webrtc_ctx.video_receiver:
         frame_placeholder = st.empty()
         study_time_placeholder = st.empty()
