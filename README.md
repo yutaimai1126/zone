@@ -2,7 +2,7 @@
 
 ![サービス概要](other_pic/UI/paper_proto.png)
 
-## 試作品
+## プロトタイプ
 ```
 https://github.com/yutaimai1126/zone.git    # このリポジトリをクローン
 
