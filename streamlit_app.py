@@ -12,7 +12,7 @@ def zone_estimation():
     with open('./model', 'rb') as f:
         model = pickle.load(f)
 
-    webrtc_ctx = webrtc_streamer(key="example", mode=WebRtcMode.SENDONLY)
+    webrtc_ctx = webrtc_streamer(key="example", mode=WebRtcMode.SENDRECV)
 
     
     if webrtc_ctx.video_receiver:
