@@ -16,7 +16,6 @@ def zone_estimation():
     
     st.text('画像処理')
 
-    st.text(webrtc_ctx.video_receiver)
 
     if webrtc_ctx.video_receiver:
         frame_placeholder = st.empty()
@@ -86,6 +85,9 @@ def zone_estimation():
                 lazy_time_placeholder.text(f'LAZY time: {str(round(st.session_state.lazy_time, 1))}')
                 zone_time_placeholder.text(f'ZONE time: {str(round(st.session_state.zone_time, 1))}')
                 focus_score_placeholder.text(f'Focus score: {str(round(st.session_state.focus_score, 0))}')
+        else:
+            st.text('カメラのエラー')
+
     
         if st.session_state.stop_button_pressed:
             st.text(f'勉強お疲れ様！あなたの勉強時間は{round(st.session_state.study_time, 0)}秒、集中度は{round(st.session_state.focus_score, 0)}%です！')
