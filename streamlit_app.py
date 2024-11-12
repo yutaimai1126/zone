@@ -4,11 +4,13 @@ import pickle
 from streamlit_webrtc import webrtc_streamer, WebRtcMode
 from utils import get_face_landmarks
 
+# ページ設定
 st.set_page_config(page_title="Zone", page_icon='other_pic/icon.png')
 
 def zone_estimation():
-    emotions = ['ZONE', 'LAZY', 'NOMAL']
+    emotions = ['ZONE', 'LAZY', 'NORMAL']
     
+    # モデルの読み込み
     with open('./model', 'rb') as f:
         model = pickle.load(f)
 
@@ -17,6 +19,7 @@ def zone_estimation():
     st.text('画像処理')
 
     if webrtc_ctx.video_receiver:
+        # プレースホルダー設定
         frame_placeholder = st.empty()
         study_time_placeholder = st.empty()
         zone_time_placeholder = st.empty()
@@ -78,6 +81,7 @@ def zone_estimation():
 
                 st.session_state.focus_score = (st.session_state.nomal_time * 0.8 + st.session_state.zone_time - st.session_state.lazy_time) * 100 / st.session_state.study_time
 
+                # 表示
                 study_time_placeholder.text(f'Study time: {str(round(st.session_state.study_time, 1))}')
                 stage_placeholder.text(f'Stage: {st.session_state.stage}')
                 nomal_time_placeholder.text(f'NOMAL time: {str(round(st.session_state.nomal_time, 1))}')
@@ -85,10 +89,8 @@ def zone_estimation():
                 zone_time_placeholder.text(f'ZONE time: {str(round(st.session_state.zone_time, 1))}')
                 focus_score_placeholder.text(f'Focus score: {str(round(st.session_state.focus_score, 0))}')
 
-    
         if st.session_state.stop_button_pressed:
             st.text(f'勉強お疲れ様！あなたの勉強時間は{round(st.session_state.study_time, 0)}秒、集中度は{round(st.session_state.focus_score, 0)}%です！')
-
 
 def main():
     st.title("集中力測定")
