@@ -9,6 +9,7 @@ https://github.com/yutaimai1126/zone.git    # このリポジトリをクロー�
 python -m venv .venv    # 仮想環境を作成
 
 . .venv/bin/activate         # 仮想環境をアクティベート(Linux,Macの場合)
+
 .\.venv\Scripts\activate    # 仮想環境をアクティベート(Windowsの場合)
 
 pip install requirements.txt    # 必要なライブラリをインストール
