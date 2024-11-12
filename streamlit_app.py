@@ -3,7 +3,7 @@ import pickle
 import cv2
 from utils import get_face_landmarks
 
-st.set_page_config(page_title="Zone", page_icon='icon.png')
+st.set_page_config(page_title="Zone", page_icon='other_pic/icon.png')
 
 def zone_estimation():
     emotions = ['ZONE', 'LAZY', 'NOMAL']
