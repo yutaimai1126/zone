@@ -16,7 +16,7 @@ def zone_estimation():
     
     st.text('画像処理')
 
-    print(webrtc_ctx.video_receiver)
+    st.text(webrtc_ctx.video_receiver)
 
     if webrtc_ctx.video_receiver:
         frame_placeholder = st.empty()
