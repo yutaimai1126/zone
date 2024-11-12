@@ -1,4 +1,4 @@
-# ユーザーの表情から集中力を測定する“ZONE”
+# ZONE
 
 ![サービス概要](other_pic/UI/paper_proto.png)
 
