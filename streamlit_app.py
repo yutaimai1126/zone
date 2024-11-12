@@ -15,6 +15,9 @@ def zone_estimation():
     webrtc_ctx = webrtc_streamer(key="example", mode=WebRtcMode.SENDRECV)
     
     st.text('画像処理')
+
+    webrtc_ctx.video_receiver.start_receiving()
+
     if webrtc_ctx.video_receiver:
         frame_placeholder = st.empty()
         study_time_placeholder = st.empty()
