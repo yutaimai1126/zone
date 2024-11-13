@@ -12,7 +12,7 @@ python -m venv .venv    # 仮想環境を作成
 
 .\.venv\Scripts\activate    # 仮想環境をアクティベート(Windowsの場合)
 
-pip install requirements.txt    # 必要なライブラリをインストール
+pip install -r requirements.txt    # 必要なライブラリをインストール
 
 streamlit run streamlit_app.py     # アプリを起動(ローカルサーバー)
 ```
@@ -45,3 +45,12 @@ streamlit run streamlit_app.py     # アプリを起動(ローカルサーバー
 ![勉強記録結果](other_pic/UI/daily_study.png)
 
 ![週間勉強記録](other_pic/UI/weekly_study.png)
+
+## 使用した機械学習モデル
+ランダムフォレスト([scikit-learn "RandomForestClassifier"](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html))
+
+## 参考にした動画とコード
+- [Emotion detection with Python, OpenCV and Scikit Learn | Mediapipe | Landmarks classification -Computer vision engineer](https://youtu.be/h0LoewzGzhc?si=SS4nwxSh1D0aWakr)
+
+- GitHub
+https://github.com/computervisioneng/emotion-recognition-python-scikit-learn-mediapipe
